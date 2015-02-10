@@ -19,7 +19,6 @@ class KeywordsAnnotator(SolrAnnotator):
         r = defaultdict(int)
         for doc in docs:
             for tag in doc.get('tags', []):
-                # print doc['text'][0][:40], language
                 r[tag] += 1
 
         if len(r) == 0:

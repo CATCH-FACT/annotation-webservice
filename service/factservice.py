@@ -80,6 +80,10 @@ if __name__ == "__main__":
             return self.process(name)
 
         def process(self, name):
+            # allow requests from all domains
+            web.header('Access-Control-Allow-Origin', '*')
+            web.header('Access-Control-Allow-Methods', 'GET, POST, DELETE, PUT')
+
             if name in mapping:
                 return json.dumps(mapping[name].process(web.input()))
             else:

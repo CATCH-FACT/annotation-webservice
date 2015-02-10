@@ -48,7 +48,6 @@ class SummaryAnnotator(AbstractAnnotator):
                 sentence_tokens.append(
                     [w.lower() for w in word_tokenize(sentence) if w not in self.stop]
                 )
-            # print sentence_tokens
 
             token_counts = defaultdict(int)
             for tokens in sentence_tokens:
@@ -77,20 +76,18 @@ class SummaryAnnotator(AbstractAnnotator):
                             sentence_weight[idx] += p_w[t]
                         sentence_weight[idx] /= len(tokens)
 
-                # print sentence_weight
-
                 # step 3: pick best scoring sentence that contains highest
                 # probability word
                 best_word = sorted(p_w.items(), key=lambda l: -l[1])[0][0]
-                # print "best word: {}".format(best_word)
+
                 ranked_sentences = sorted([
-                    (idx, s)
+                    (idx, best_word in sentence_tokens[idx], s)
                     for(idx, s) in sentence_weight.items()
-                    if best_word in sentence_tokens[idx]
-                ], key=lambda l: -l[1])
+                ], key=lambda l: (-l[1], -l[2]))
+
                 if len(ranked_sentences) > 0:
                     idx = ranked_sentences[0][0]
-                    # print "Best sentence: {}".format(idx)
+
                     sentence_score[idx] = score
                     score -= 1
                     del sentence_weight[idx]

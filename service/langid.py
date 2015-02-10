@@ -11,7 +11,7 @@ the most frequent language encountered is returned.
 
 class LanguageAnnotator(SolrAnnotator):
     def __init__(self, solr_url):
-        super(LanguageAnnotator, self).__init__(solr_url, rows=20)
+        super(LanguageAnnotator, self).__init__(solr_url, rows=10)
 
     def processdocuments(self, docs, tokens):
         # simply do a majority vote
@@ -19,7 +19,6 @@ class LanguageAnnotator(SolrAnnotator):
         r = defaultdict(int)
         for doc in docs:
             for language in doc.get('language', [])[:1]:
-                # print doc['text'][0][:40], language
                 r[language] += 1
 
         if len(r) == 0:

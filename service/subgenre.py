@@ -19,7 +19,6 @@ class SubgenreAnnotator(SolrAnnotator):
         r = defaultdict(int)
         for doc in docs:
             for subgenre in doc.get('subgenre', [])[:1]:
-                # print doc['text'][0][:40], subgenre
                 r[subgenre] += 1
 
         if len(r) == 0:
