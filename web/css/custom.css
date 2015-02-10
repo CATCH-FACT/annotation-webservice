@@ -1,0 +1,13 @@
+body {
+    padding-top: 20px;
+}
+#summaryslider {
+    margin-left: 20px;
+    margin-top: 6px;
+}
+#keywordsuggestions {
+    padding-top: 5px;
+    padding-left: 10px;
+    height: 180px;
+    overflow-y: scroll;
+}

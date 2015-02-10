@@ -1,0 +1,2 @@
+# use grunt watch to update minified js
+browser-sync start --proxy "http://localhost:8888" --files "index.php" -iles "js/build/fact.js" --files "css/*.css"
