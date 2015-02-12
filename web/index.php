@@ -26,7 +26,7 @@
   <div class="form-group">
     <label for="storytext" class="col-sm-2 control-label">Tekst</label>
     <div class="col-sm-10">
-      <textarea class="form-control" id="storytext" placeholder="Vul hier de tekst in" rows="8" data-bind="text: text"></textarea>
+      <textarea class="form-control" id="storytext" placeholder="Vul hier de tekst in" rows="8" data-bind="value: text"></textarea>
     </div>
   </div>
   <div class="form-group">
@@ -65,11 +65,21 @@
       <div class="row">
         <div class="col-sm-6">
           <select class="form-control" data-bind="value: subgenre">
-            <option>Mop</option>
-            <option>Sprookje</option>
-            <option>Sage</option>
-            <option>Broodjeaapverhaal/stadsage</option>
-            <option>...</option>
+            <option value=""></option>
+            <option value="sage">Sage</option>
+            <option value="mop">Mop</option>
+            <option value="sprookje">Sprookje</option>
+            <option value="broodjeaapverhaal">Broodjeaapverhaal</option>
+            <option value="raadsel">Raadsel</option>
+            <option value="personal narrative">Personal narrative</option>
+            <option value="legende">Legende</option>
+            <option value="exempel">Exempel</option>
+            <option value="kwispel">Kwispel</option>
+            <option value="lied">Lied</option>
+            <option value="personal">Personal</option>
+            <option value="mythe">Mythe</option>
+            <option value="legend">Legend</option>
+            <option value="limerick">Limerick</option>
           </select>
         </div>
         <div class="col-sm-6">
