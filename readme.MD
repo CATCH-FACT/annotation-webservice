@@ -14,16 +14,22 @@ The python web service provides:
 * Automatic **keyword assignment** (based on K-NN)
 * Automatic **language identifcation** (based on K-NN)
 * Automatic **subgenre identification** (based on K-NN)
+* Automatic **named entity recognition** (based on Frog)
 
 ### Dependencies
-The Python web service requires the following python packages to be installed
+The following python packages are required:
 
 * [web.py](http://webpy.org/), for running the webservice
 * [requests](http://docs.python-requests.org/en/latest/), for connecting to the SOLR index
 * [jsonpath_rw](https://github.com/kennknowles/python-jsonpath-rw), for jsonpath expressions
 * [nltk](http://www.nltk.org), for sentence segmentation and tokenization
 
-Furthermore it requires the existing collection to be indexed using [SOLR](http://lucene.apache.org/solr).
+For named entity recognition [FROG](http://ilk.uvt.nl/frog/) and its dependencies (Timbl, ucto etc.) should be installed and running as a service. See the [FROG](http://ilk.uvt.nl/frog/) for installation instructions.
+Start the FROG web service at port 12345 with the following command:
+`frog -S 12345 --skip=p`
+The frog host and port name should be passed as parameters to the web service.
+
+The current collection should to be indexed using [SOLR](http://lucene.apache.org/solr).
 The document text should be available in the field 'text' in the index.
 The location of the SOLR collection can be specified when starting the service.
 
@@ -31,7 +37,7 @@ The location of the SOLR collection can be specified when starting the service.
 
 The web service can be started using the following command:
 
-`python factservice.py -solr "http://server:8080/solr/collection_name"`
+`python factservice.py -solr "http://server:8080/solr/collection_name" -frog "http://froghostname:12345"`
 
 By default the service will run on port 24681.
 

@@ -108,6 +108,25 @@
   </div> 
 
   <div class="form-group">
+    <label for="ner" class="col-sm-2 control-label">Namen</label>
+    <div class="col-sm-10">
+      <div class="row">
+        <div class="col-sm-6">
+          <textarea class="form-control" id="ner" placeholder="Vul hier namen in" rows="10" data-bind="value: entities"></textarea>
+        </div>
+        <div class="col-sm-6">
+          <button class="btn btn-default" type="button" data-bind="click: detectentities">Bepaal automatisch</button>
+          <button class="btn btn-default" type="button" data-bind="click: addentityselection">Voeg selectie toe</button>
+
+          <div id="ner_suggestions" data-bind="foreach: automaticentities">
+            <div><label><input type="checkbox" data-bind="checked: checked"> <span data-bind="text: entity"></span></label></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div> 
+
+  <div class="form-group">
     <div class="col-sm-offset-2 col-sm-10">
       <button type="submit" class="btn btn-default">Voeg toe</button>
     </div>
