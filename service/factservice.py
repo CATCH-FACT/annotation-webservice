@@ -7,6 +7,7 @@ REST web service for doing automatic
 - automatic summarization
 - keyword extraction
 - subgenre classification
+- named entity recognition
 
 By default, starts a webservice at port 24681 (can be set with the -p switch)
 
@@ -15,6 +16,7 @@ Expects posting a document to be annotated to one the following urls
 /summary
 /keywords
 /subgenre
+/ner
 
 expects the fields of the document to be posted:
     text: Full-text of the document (required),
@@ -35,6 +37,7 @@ from langid import LanguageAnnotator
 from keywords import KeywordsAnnotator
 from summary import SummaryAnnotator
 from subgenre import SubgenreAnnotator
+from ner import NerAnnotator
 
 parser = argparse.ArgumentParser(
     description='''Runs the FACT language, summary and keywords metadata annotator web service''')
@@ -53,6 +56,10 @@ parser.add_argument(
     '-solr',
     help="SOLR collection url (default: {})".format(DEFAULT_SOLR_URL),
     default=DEFAULT_SOLR_URL)
+parser.add_argument(
+    '-frog',
+    help="FROG server and port (default: {})".format(DEFAULT_FROG),
+    default=DEFAULT_FROG)
 
 
 class FactApplication(web.application):
@@ -69,6 +76,7 @@ if __name__ == "__main__":
         'language': LanguageAnnotator(args.solr),
         'keywords': KeywordsAnnotator(args.solr),
         'subgenre': SubgenreAnnotator(args.solr),
+        'ner': NerAnnotator(args.frog),
         'summary': SummaryAnnotator(),
     }
 
@@ -98,4 +106,4 @@ if __name__ == "__main__":
 
     app = FactApplication(urls, globals())
     app.run(port=args.p)
-
+    
